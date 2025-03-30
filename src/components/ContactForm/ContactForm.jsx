@@ -14,20 +14,18 @@ const ContactForm = ({ contacts, setContacts }) => {
             name: values.username,
             number: values.number,
         };
-
         setContacts([...contacts, newContact]);
         resetForm();
     };
-
     return (
         <Formik validationSchema={FeedbackSchema} initialValues={{ username: "", number: "" }} onSubmit={addContact}>
             <Form className={style.formBox}>
                 <label className={style.formLabel}>Name</label>
                 <Field className={style.formInput} type="text" name="username" />
-                <ErrorMessage name="username" component="div" className={style.error} />
+                <ErrorMessage className={style.formError} name="username" component="div" />
                 <label className={style.formLabel}>Number</label>
                 <Field className={style.formInput} type="tel" name="number" />
-                <ErrorMessage name="number" component="div" className={style.error} />
+                <ErrorMessage className={style.formError} name="number" component="div" />
                 <button className={style.formButton} type="submit">
                     Add contact
                 </button>

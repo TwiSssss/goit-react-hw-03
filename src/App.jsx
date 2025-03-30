@@ -6,7 +6,6 @@ import userData from "./data/userData.json";
 
 export const App = () => {
     const [contacts, setContacts] = useState(() => JSON.parse(localStorage.getItem("userData")) ?? userData);
-
     const [filter, setFilter] = useState("");
     useEffect(() => {
         localStorage.setItem("userData", JSON.stringify(contacts));
@@ -14,24 +13,18 @@ export const App = () => {
     const handleFilterChange = (event) => {
         setFilter(event.target.value);
     };
-
+    const filterContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
     const handleDelete = (id) => {
-        const newData = contacts.filter((item) => item.id !== id);
-        setContacts(newData);
+        const rmwContacts = contacts.filter((contact) => contact.id !== id);
+        setContacts(rmwContacts);
     };
-
-    const filteredContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
-    
- localStorage.removeItem('userData');
-
-
+    // localStorage.removeItem('userData');
     return (
         <div>
             <h1>Phonebook</h1>
             <ContactForm contacts={contacts} setContacts={setContacts} />
             <SearchBox value={filter} onChange={handleFilterChange} />
-            <ContactList contacts={filteredContacts} onDelete={handleDelete} />
+            <ContactList contacts={filterContacts} onDelete={handleDelete} />
         </div>
     );
-    
 };

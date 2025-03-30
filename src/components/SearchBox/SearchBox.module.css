@@ -5,11 +5,11 @@
  border-radius: 10px;
  margin-bottom: 10px;
  background-color: white;
- font-size: 18px;
  max-width: 400px;
 }
 .searchBoxInput {
  width: 370px;
  padding: 8px;
  margin-top: 10px;
+ border-radius: 5px;
 }
